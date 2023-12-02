@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inserir Gênero</title>
+    <%- include('../../partials/estilizacao.ejs') %>
+  </head>
+  <body>
+    <%- include('../../partials/navbar.ejs') %>
+    <div class="container mt-5 min-vh-100">
+      <h2>Inserir Gênero</h2>
+      <form method="post" action="/generos/post">
+        <div class="form-group">
+          <label for="NomeGenero">Nome do Gênero:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="NomeGenero"
+            name="NomeGenero"
+            required
+          />
+        </div>
+        <button type="submit" class="btn btn-primary">Inserir Gênero</button>
+      </form>
+    </div>
+    <%- include('../../partials/footer.ejs') %>
+  </body>
+</html>

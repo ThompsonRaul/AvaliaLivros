@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resultados da Pesquisa</title>
+    <%- include('../../partials/estilizacao.ejs') %>
+  </head>
+  <body>
+    <%- include('../../partials/navbar.ejs') %>
+    <div class="container mt-3 min-vh-100">
+      <h2>Resultados da Pesquisa</h2>
+
+      <% if (autores.length === 0) { %>
+      <p>Não foram encontrados resultados para esta pesquisa.</p>
+      <% } else { %>
+      <ul class="list-group">
+        <% autores.forEach(function(autor) { %>
+        <li class="list-group-item">
+          <strong><%= autor.NomeAutor %></strong><br />
+          Livros Escritos: <%= autor.LivrosEscritos %><br />
+        </li>
+        <% }); %>
+      </ul>
+      <% } %>
+    </div>
+    <%- include('../../partials/footer.ejs') %>
+  </body>
+</html>

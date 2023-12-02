@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a href="/"
     ><img
-      src="https://images2.imgbox.com/2c/a3/I0DPg9VA_o.png"
+      src="https://images2.imgbox.com/74/f5/JiNmfaOM_o.png"
       alt="image host"
       width="200"
   /></a>
@@ -25,9 +25,11 @@
           aria-labelledby="inserirDropdown"
         >
           <a class="dropdown-item" href="/livros/inserir">Inserir Livros</a>
-          <a class="dropdown-item" href="/atores/inserir">Inserir Ator</a>
-          <a class="dropdown-item" href="/filmes_atores/inserir"
-            >Inserir Filme-Ator</a
+          <a class="dropdown-item" href="/autores/inserir">Inserir Autor</a>
+          <a class="dropdown-item" href="/editoras/inserir">Inserir Editora</a>
+          <a class="dropdown-item" href="/generos/inserir">Inserir Gênero</a>
+          <a class="dropdown-item" href="/livros_autores/inserir"
+            >Inserir Livro-Autor</a
           >
           <a class="dropdown-item" href="/diretores/inserir">Inserir Diretor</a>
           <a class="dropdown-item" href="/filmes_diretores/inserir"
@@ -56,7 +58,33 @@
           class="dropdown-menu dropdown-menu-right"
           aria-labelledby="inserirDropdown"
         >
-          <a class="dropdown-item" href="/atores/pesquisar">Pesquisar Ator</a>
+          <a class="dropdown-item" href="/autores/pesquisar">Pesquisar Autor</a>
+          <a class="dropdown-item" href="/diretores/pesquisar"
+            >Pesquisar Diretor</a
+          >
+          <a class="dropdown-item" href="/generos/pesquisar"
+            >Pesquisar Filmes por Gênero</a
+          >
+        </div>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a
+          class="nav-link dropdown-toggle"
+          href="#"
+          id="inserirDropdown"
+          role="button"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          Editar
+        </a>
+        <div
+          class="dropdown-menu dropdown-menu-right"
+          aria-labelledby="inserirDropdown"
+        >
+          <a class="dropdown-item" href="/autores/editar/">Editar Autor</a>
           <a class="dropdown-item" href="/diretores/pesquisar"
             >Pesquisar Diretor</a
           >

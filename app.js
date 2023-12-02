@@ -1,6 +1,10 @@
 const bodyParser = require("body-parser");
 const indexRoutes = require("./routes/index");
 const livrosRoutes = require("./routes/livros");
+const autoresRoutes = require("./routes/autores");
+const editorasRoutes = require("./routes/editoras");
+const generosRoutes = require("./routes/generos");
+const livrosAutoresRoutes = require("./routes/livrosAutores");
 var express = require("express");
 var app = express();
 // Configuração do EJS como view engine
@@ -11,6 +15,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/", indexRoutes);
 app.use("/livros", livrosRoutes);
+app.use("/autores", autoresRoutes);
+app.use("/editoras", editorasRoutes);
+app.use("/generos", generosRoutes);
+app.use("/livros_autores", livrosAutoresRoutes);
 
 app.listen(process.env.DB_PORT, () => {
   console.log(`SERVIDOR ATIVO, ACESSE http://localhost:${process.env.DB_PORT}`);
