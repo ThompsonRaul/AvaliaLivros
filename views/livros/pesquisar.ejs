@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resultados da Pesquisa</title>
+    <%- include('../../partials/estilizacao.ejs') %>
+  </head>
+  <body>
+    <%- include('../../partials/navbar.ejs') %>
+    <div class="container mt-3 min-vh-100">
+      <h2>Resultados da Pesquisa</h2>
+
+      <% if (livros.length === 0) { %>
+      <p>Não foram encontrados resultados para esta pesquisa.</p>
+      <% } else { %>
+      <ul class="list-group">
+        <% livros.forEach(function(livro) { %>
+        <li class="list-group-item">
+          <strong><%= livro.Livro %></strong><br />
+          Ano de Publicação: <%= livro.Ano %><br />
+          N° de páginas: <%= livro.Paginas %><br />
+          Sinopse: <%= livro.Sinopse %><br />
+          Autores: <%= livro.Autores %><br />
+          Editoras: <%= livro.Editoras %><br />
+          Gêneros: <%= livro.Generos %><br />
+          Média de Avaliações: <%= livro.MediaAvaliacao %>
+        </li>
+        <% }); %>
+      </ul>
+      <% } %>
+    </div>
+    <%- include('../../partials/footer.ejs') %>
+  </body>
+</html>

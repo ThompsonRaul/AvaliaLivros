@@ -1,0 +1,53 @@
+<!-- views/index.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AvaliaLivros</title>
+    <%- include('../partials/estilizacao.ejs') %>
+  </head>
+  <body>
+    <!-- Inclua seu cabeçalho de navegação aqui -->
+    <%- include('../partials/navbar.ejs') %>
+    <div class="container mt-5 min-vh-100">
+      <h2>Lista de Livros</h2>
+      <ul class="list-group">
+        <% livros.forEach(function(livro) { %>
+        <li class="list-group-item">
+          <strong><%= livro.Livro %></strong><br />
+          Ano de Publicação: <%= livro.Ano %><br />
+          N° de páginas: <%= livro.Paginas %><br />
+          Sinopse: <%= livro.Sinopse %><br />
+          Autores: <%= livro.Autores %><br />
+          Editoras: <%= livro.Editoras %><br />
+          Gêneros: <%= livro.Generos %><br />
+          Média de Avaliação: <%= livro.MediaAvaliacao %>
+
+          <div class="d-flex justify-content-end">
+            <!-- Substitua '/livros/editar/' pelo caminho correto em sua aplicação -->
+            <a href="/livros/editar/<%= livro.ID %>" class="btn btn-primary"
+              >Editar Livro</a
+            >
+          </div>
+        </li>
+        <% }); %>
+      </ul>
+
+      <!-- Adicione a navegação de página usando Bootstrap -->
+      <nav aria-label="Navegação de página">
+        <ul class="pagination justify-content-center mt-4">
+          <% for (let i = 1; i <= totalPaginas; i++) { %>
+          <li class="page-item <%= i == paginaAtual ? 'active' : '' %>">
+            <a class="page-link" href="?pagina=<%= i %>"><%= i %></a>
+          </li>
+          <% } %>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- Inclua seu rodapé aqui -->
+    <%- include('../partials/footer.ejs') %>
+  </body>
+</html>

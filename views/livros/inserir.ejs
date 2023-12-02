@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inserir Livro</title>
+    <%- include('../../partials/estilizacao.ejs') %>
+  </head>
+  <body>
+    <%- include('../../partials/navbar.ejs') %>
+    <div class="container mt-5 min-vh-100">
+      <h2>Inserir Livro</h2>
+      <form method="post" action="/livros/post">
+        <div class="form-group">
+          <label for="Titulo">Título:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="Titulo"
+            name="Titulo"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="AnoPublicacao">Ano de Publicação:</label>
+          <input
+            type="number"
+            class="form-control"
+            id="AnoPublicacao"
+            name="AnoPublicacao"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="NumPaginas">Número de Páginas:</label>
+          <input
+            type="number"
+            class="form-control"
+            id="NumPaginas"
+            name="NumPaginas"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="Sinopse">Sinopse:</label>
+          <textarea
+            class="form-control"
+            id="Sinopse"
+            name="Sinopse"
+            rows="4"
+            required
+          ></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Inserir Livro</button>
+      </form>
+    </div>
+    <%- include('../../partials/footer.ejs') %>
+  </body>
+</html>

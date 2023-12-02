@@ -1,0 +1,105 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a href="/"
+    ><img
+      src="https://images2.imgbox.com/2c/a3/I0DPg9VA_o.png"
+      alt="image host"
+      width="200"
+  /></a>
+
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item dropdown">
+        <a
+          class="nav-link dropdown-toggle"
+          href="#"
+          id="inserirDropdown"
+          role="button"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          Inserir
+        </a>
+        <div
+          class="dropdown-menu dropdown-menu-right"
+          aria-labelledby="inserirDropdown"
+        >
+          <a class="dropdown-item" href="/livros/inserir">Inserir Livros</a>
+          <a class="dropdown-item" href="/atores/inserir">Inserir Ator</a>
+          <a class="dropdown-item" href="/filmes_atores/inserir"
+            >Inserir Filme-Ator</a
+          >
+          <a class="dropdown-item" href="/diretores/inserir">Inserir Diretor</a>
+          <a class="dropdown-item" href="/filmes_diretores/inserir"
+            >Inserir Filme-Diretor</a
+          >
+          <a class="dropdown-item" href="/generos/inserir">Inserir Gênero</a>
+          <a class="dropdown-item" href="/filmes_generos/inserir"
+            >Inserir Filme-Gênero</a
+          >
+        </div>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a
+          class="nav-link dropdown-toggle"
+          href="#"
+          id="inserirDropdown"
+          role="button"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          Pesquisar
+        </a>
+        <div
+          class="dropdown-menu dropdown-menu-right"
+          aria-labelledby="inserirDropdown"
+        >
+          <a class="dropdown-item" href="/atores/pesquisar">Pesquisar Ator</a>
+          <a class="dropdown-item" href="/diretores/pesquisar"
+            >Pesquisar Diretor</a
+          >
+          <a class="dropdown-item" href="/generos/pesquisar"
+            >Pesquisar Filmes por Gênero</a
+          >
+        </div>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a
+          class="nav-link dropdown-toggle"
+          href="#"
+          id="inserirDropdown"
+          role="button"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          Deletar
+        </a>
+        <div
+          class="dropdown-menu dropdown-menu-right"
+          aria-labelledby="inserirDropdown"
+        >
+          <a class="dropdown-item" href="/filmes/inserir">Deletar Filme</a>
+          <a class="dropdown-item" href="/atores/inserir">Deletar Ator</a>
+          <a class="dropdown-item" href="/diretores/inserir">Deletar Diretor</a>
+          <a class="dropdown-item" href="/generos/inserir">Deletar Gênero</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <form class="form-inline ml-3" action="/livros/pesquisar" method="GET">
+    <input
+      class="form-control mr-sm-2"
+      type="text"
+      placeholder="Pesquisar livro por nome"
+      name="nome"
+    />
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+      Pesquisar
+    </button>
+  </form>
+</nav>
