@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Editar Editora</title>
+    <!-- Inclua os estilos do Bootstrap ou outros estilos necessários -->
+    <%- include('../../partials/estilizacao.ejs') %>
+  </head>
+  <body>
+    <!-- Inclua a barra de navegação, se necessário -->
+    <%- include('../../partials/navbar.ejs') %>
+    <div class="container mt-5 min-vh-100">
+      <h2>Editar Editora</h2>
+      <form id="updateForm" method="post" action="/editoras/update">
+        <input
+          type="hidden"
+          id="EditoraID"
+          name="EditoraID"
+          value="<%= editora.EditoraID %>"
+        />
+        <div class="form-group">
+          <label for="NomeEditora">Nome da Editora:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="NomeEditora"
+            name="NomeEditora"
+            value="<%= editora.NomeEditora %>"
+            required
+          />
+        </div>
+        <!-- Adicione outros campos de edição conforme necessário -->
+
+        <button
+          type="submit"
+          class="btn btn-primary"
+          data-toggle="modal"
+          data-target="#successModal"
+        >
+          Confirmar Alterações
+        </button>
+      </form>
+    </div>
+
+    <!-- Modal de Sucesso -->
+    <div
+      class="modal fade"
+      id="successModal"
+      tabindex="-1"
+      aria-labelledby="successModalLabel"
+      aria-hidden="true"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="successModalLabel">Sucesso!</h5>
+          </div>
+          <div class="modal-body">A alteração foi realizada com sucesso.</div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-success"
+              data-bs-dismiss="modal"
+              onclick="window.location.href = '/editoras'"
+            >
+              Fechar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

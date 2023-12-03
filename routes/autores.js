@@ -19,7 +19,11 @@ router.post("/post", (req, res) => {
       res.status(500).send("Erro ao inserir o autor.");
     } else {
       console.log("Autor inserido com sucesso!");
+<<<<<<< HEAD
       res.redirect("/");
+=======
+      res.redirect("/autores/resultados_pesquisa?nome=");
+>>>>>>> 6d088239c2794d8b928d4cc64fb4aabb5c9537a4
     }
   });
 });
@@ -33,6 +37,7 @@ router.get("/resultados_pesquisa", (req, res) => {
   searchTerm = "%" + searchTerm + "%";
 
   const query = `
+<<<<<<< HEAD
   SELECT
     A.NomeAutor AS Nome,
     GROUP_CONCAT(L.Titulo SEPARATOR ', ') AS LivrosEscritos
@@ -46,6 +51,18 @@ router.get("/resultados_pesquisa", (req, res) => {
     A.NomeAutor LIKE ?
   GROUP BY
     A.NomeAutor;
+=======
+    SELECT
+        Autores.AutorID,
+        Autores.NomeAutor,
+        GROUP_CONCAT(DISTINCT Livros.Titulo ORDER BY Livros.Titulo ASC SEPARATOR ', ') AS Livros
+    FROM Autores
+    LEFT JOIN LivrosAutores ON Autores.AutorID = LivrosAutores.AutorID
+    LEFT JOIN Livros ON LivrosAutores.LivroID = Livros.LivroID
+    WHERE Autores.NomeAutor LIKE ?
+    GROUP BY Autores.AutorID;
+
+>>>>>>> 6d088239c2794d8b928d4cc64fb4aabb5c9537a4
 `;
 
   db.query(query, [searchTerm], (error, autores) => {
@@ -59,6 +76,7 @@ router.get("/resultados_pesquisa", (req, res) => {
 });
 
 router.get("/editar/:id", (req, res) => {
+<<<<<<< HEAD
     const autorID = req.params.id;
     const query = "SELECT * FROM Autores WHERE AutorID = ?";
     db.query(query, [autorID], (err, results) => {
@@ -89,4 +107,60 @@ router.post("/update", (req, res) => {
     });
   });
   
+=======
+  const autorID = req.params.id;
+  const query = "SELECT * FROM Autores WHERE AutorID = ?";
+  db.query(query, [autorID], (err, results) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send("Erro ao buscar o autor.");
+    } else if (results.length > 0) {
+      const autor = results[0];
+      res.render("autores/editar", { autor });
+    } else {
+      res.status(404).send("Autor não encontrado.");
+    }
+  });
+});
+
+// Rota para processar a atualização
+router.post("/update", (req, res) => {
+  const { AutorID, NomeAutor } = req.body;
+  const query = "UPDATE Autores SET NomeAutor = ? WHERE AutorID = ?";
+  db.query(query, [NomeAutor, AutorID], (err) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send("Erro ao atualizar o autor.");
+    } else {
+      // Lógica de redirecionamento ou resposta de sucesso
+      res.redirect("/autores/resultados_pesquisa?nome=");
+    }
+  });
+});
+
+router.post("/excluir/:id", (req, res) => {
+  const autorID = req.params.id;
+
+  // Array de instruções SQL
+  const queries = [
+    "DELETE FROM LivrosAutores WHERE AutorID = ?",
+    "DELETE FROM Autores WHERE AutorID = ?",
+  ];
+
+  // Loop para executar cada instrução SQL
+  queries.forEach((query, index) => {
+    db.query(query, [autorID], (err, results) => {
+      if (err) {
+        console.error(err);
+        res.status(500).send(`Erro ao excluir o livro (etapa ${index + 1}).`);
+        return;
+      }
+    });
+  });
+
+  console.log("Autor excluído com sucesso!");
+  res.redirect("/autores/resultados_pesquisa?nome="); // Redireciona para a página principal após excluir o livro
+});
+
+>>>>>>> 6d088239c2794d8b928d4cc64fb4aabb5c9537a4
 module.exports = router;
