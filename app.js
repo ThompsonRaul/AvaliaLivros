@@ -5,6 +5,10 @@ const autoresRoutes = require("./routes/autores");
 const editorasRoutes = require("./routes/editoras");
 const generosRoutes = require("./routes/generos");
 const livrosAutoresRoutes = require("./routes/livrosAutores");
+const livrosEditorasRoutes = require("./routes/livrosEditoras");
+const livrosGenerosRoutes = require("./routes/livrosGeneros");
+const usuariosRoutes = require("./routes/usuarios");
+
 var express = require("express");
 var app = express();
 // Configuração do EJS como view engine
@@ -19,6 +23,9 @@ app.use("/autores", autoresRoutes);
 app.use("/editoras", editorasRoutes);
 app.use("/generos", generosRoutes);
 app.use("/livros_autores", livrosAutoresRoutes);
+app.use("/livros_editoras", livrosEditorasRoutes);
+app.use("/livros_generos", livrosGenerosRoutes);
+app.use("/usuarios", usuariosRoutes);
 
 app.listen(process.env.DB_PORT, () => {
   console.log(`SERVIDOR ATIVO, ACESSE http://localhost:${process.env.DB_PORT}`);

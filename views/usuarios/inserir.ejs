@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastro de Usuário</title>
+    <!-- Estilos do Bootstrap ou outros estilos desejados -->
+    <%- include('../../partials/estilizacao.ejs') %>
+  </head>
+
+  <body>
+    <%- include('../../partials/navbar.ejs') %>
+    <div class="container mt-5 min-vh-100">
+      <h2>Cadastro de Usuário</h2>
+      <form method="post" action="/usuarios/post">
+        <div class="form-group">
+          <label for="Nome">Nome:</label>
+          <input type="text" class="form-control" id="Nome" name="Nome" required />
+        </div>
+
+        <div class="form-group">
+          <label for="Email">E-mail:</label>
+          <input type="email" class="form-control" id="Email" name="Email" required />
+        </div>
+
+        <div class="form-group">
+          <label for="Senha">Senha:</label>
+          <input type="password" class="form-control" id="Senha" name="Senha" required />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+      </form>
+    </div>
+    <%- include('../../partials/footer.ejs') %>
+  </body>
+</html>
