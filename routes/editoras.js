@@ -24,8 +24,6 @@ router.post("/post", (req, res) => {
   });
 });
 
-<<<<<<< HEAD
-=======
 router.get("/pesquisar", (req, res) => {
   res.render("editoras/pesquisar");
 });
@@ -118,5 +116,4 @@ router.post("/excluir/:id", (req, res) => {
   res.redirect("/editoras/resultados_pesquisa?nome="); // Redireciona para a página principal após excluir o livro
 });
 
->>>>>>> 6d088239c2794d8b928d4cc64fb4aabb5c9537a4
 module.exports = router;

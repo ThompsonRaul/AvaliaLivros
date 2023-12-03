@@ -3,32 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<<<<<<< HEAD
-    <title>Resultados da Pesquisa</title>
-=======
     <title>Pesquisar Autores</title>
->>>>>>> 6d088239c2794d8b928d4cc64fb4aabb5c9537a4
     <%- include('../../partials/estilizacao.ejs') %>
   </head>
   <body>
     <%- include('../../partials/navbar.ejs') %>
     <div class="container mt-3 min-vh-100">
-<<<<<<< HEAD
-      <h2>Resultados da Pesquisa</h2>
-
-      <% if (autores.length === 0) { %>
-      <p>Não foram encontrados resultados para esta pesquisa.</p>
-      <% } else { %>
-      <ul class="list-group">
-        <% autores.forEach(function(autor) { %>
-        <li class="list-group-item">
-          <strong><%= autor.NomeAutor %></strong><br />
-          Livros Escritos: <%= autor.LivrosEscritos %><br />
-        </li>
-        <% }); %>
-      </ul>
-      <% } %>
-=======
       <h2>Pesquisar Autores</h2>
       <form
         class="form-inline mt-3"
@@ -47,7 +27,6 @@
         </div>
         <button type="submit" class="btn btn-primary ml-2">Pesquisar</button>
       </form>
->>>>>>> 6d088239c2794d8b928d4cc64fb4aabb5c9537a4
     </div>
     <%- include('../../partials/footer.ejs') %>
   </body>
