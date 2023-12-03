@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resultados da Pesquisa</title>
+    <!-- Inclua os estilos do Bootstrap ou outros estilos necessários -->
+    <%- include('../../partials/estilizacao.ejs') %>
+  </head>
+
+  <body>
+    <!-- Inclua a barra de navegação, se necessário -->
+    <%- include('../../partials/navbar.ejs') %>
+
+    <div class="container mt-3 min-vh-100">
+      <h2>Resultados da Pesquisa por <%= generoNome %></h2>
+
+      <% if (livrosPorGenero.length > 0) { %>
+      <ul class="list-group">
+        <% livrosPorGenero.forEach(function(resultado) { %>
+        <li class="list-group-item">
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <strong>Livro(s) do gênero <%= resultado.NomeGenero %></strong>:
+              <%= resultado.TitulosLivros %>
+            </div>
+            <div>
+              <!-- Botão para editar o gênero -->
+              <a
+                href="/generos/editar/<%= resultado.GeneroID %>"
+                class="btn btn-primary mr-2"
+              >
+                Editar Gênero
+              </a>
+              <!-- Botão para excluir o gênero -->
+              <button
+                class="btn btn-danger"
+                data-toggle="modal"
+                data-target="#deleteModal<%= resultado.GeneroID %>"
+              >
+                Excluir Gênero
+              </button>
+            </div>
+          </div>
+        </li>
+
+        <!-- Modal de Confirmação de Exclusão -->
+        <div
+          class="modal fade"
+          id="deleteModal<%= resultado.GeneroID %>"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="deleteModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">
+                  Confirmação de Exclusão
+                </h5>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Fechar"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                Tem certeza de que deseja excluir o gênero "<%=
+                resultado.NomeGenero %>"?
+              </div>
+              <div class="modal-footer">
+                <!-- Formulário para a exclusão -->
+                <form
+                  method="post"
+                  action="/generos/excluir/<%= resultado.GeneroID %>"
+                >
+                  <!-- Botão para cancelar -->
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-dismiss="modal"
+                  >
+                    Cancelar
+                  </button>
+                  <!-- Botão para confirmar a exclusão -->
+                  <button type="submit" class="btn btn-danger">Excluir</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <% }); %>
+      </ul>
+      <% } else { %>
+      <p>Não foram encontrados livros para este gênero.</p>
+      <% } %>
+
+      <!-- Adicione outros elementos ou estilos conforme necessário -->
+    </div>
+
+    <!-- Inclua o rodapé, se necessário -->
+    <%- include('../../partials/footer.ejs') %>
+
+    <script>
+      // Se necessário, você pode adicionar scripts aqui
+    </script>
+  </body>
+</html>

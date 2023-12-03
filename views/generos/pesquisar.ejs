@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pesquisar Livros por Gênero</title>
+    <!-- Inclua os estilos do Bootstrap ou outros estilos necessários -->
+    <%- include('../../partials/estilizacao.ejs') %>
+  </head>
+
+  <body>
+    <!-- Inclua a barra de navegação, se necessário -->
+    <%- include('../../partials/navbar.ejs') %>
+
+    <div class="container mt-3 min-vh-100">
+      <h2>Pesquisar Livros por Gênero</h2>
+      <form
+        class="form-inline mt-3"
+        action="/generos/resultados_pesquisa"
+        method="GET"
+      >
+        <div class="form-group">
+          <label for="generoId">Selecione o Gênero:</label>
+          <select class="form-control" id="generoId" name="generoId">
+            <% generos.forEach(function(genero) { %>
+            <option value="<%= genero.GeneroID %>">
+              <%= genero.NomeGenero %>
+            </option>
+            <% }); %>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary ml-2">Pesquisar</button>
+      </form>
+    </div>
+
+    <!-- Inclua o rodapé, se necessário -->
+    <%- include('../../partials/footer.ejs') %>
+  </body>
+</html>

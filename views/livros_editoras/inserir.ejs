@@ -26,9 +26,13 @@
         <div class="form-group">
           <label for="EditoraID">Selecione uma Editora:</label>
           <select class="form-control" id="EditoraID" name="EditoraID" required>
-            <option value="" disabled selected>-- Selecione uma Editora --</option>
+            <option value="" disabled selected>
+              -- Selecione uma Editora --
+            </option>
             <% editoras.forEach(function(editora) { %>
-            <option value="<%= editora.EditoraID %>"><%= editora.NomeEditora %></option>
+            <option value="<%= editora.EditoraID %>">
+              <%= editora.NomeEditora %>
+            </option>
             <% }); %>
           </select>
         </div>
