@@ -3,65 +3,33 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Editar Livro</title>
+    <title>Editar Autor</title>
     <%- include('../../partials/estilizacao.ejs') %>
   </head>
   <body>
     <%- include('../../partials/navbar.ejs') %>
     <div class="container mt-5 min-vh-100">
-      <h2>Editar Livro</h2>
-      <form id="updateForm" method="post" action="/livros/update">
+      <h2>Editar Autor</h2>
+      <form id="updateForm" method="post" action="/autores/update">
         <input
           type="hidden"
-          id="LivroID"
-          name="LivroID"
-          value="<%= livro.LivroID %>"
+          id="AutorID"
+          name="AutorID"
+          value="<%= autor.AutorID %>"
         />
         <div class="form-group">
-          <label for="Titulo">Título:</label>
+          <label for="NomeAutor">Nome do Autor:</label>
           <input
             type="text"
             class="form-control"
-            id="Titulo"
-            name="Titulo"
-            value="<%= livro.Titulo %>"
+            id="NomeAutor"
+            name="NomeAutor"
+            value="<%= autor.NomeAutor %>"
             required
           />
         </div>
-        <div class="form-group">
-          <label for="AnoPublicacao">Ano de Publicação:</label>
-          <input
-            type="number"
-            class="form-control"
-            id="AnoPublicacao"
-            name="AnoPublicacao"
-            value="<%= livro.AnoPublicacao %>"
-            required
-          />
-        </div>
-        <div class="form-group">
-          <label for="NumPaginas">Número de Páginas:</label>
-          <input
-            type="number"
-            class="form-control"
-            id="NumPaginas"
-            name="NumPaginas"
-            value="<%= livro.NumPaginas %>"
-            required
-          />
-        </div>
-        <div class="form-group">
-          <label for="Sinopse">Sinopse:</label>
-          <textarea
-            class="form-control"
-            id="Sinopse"
-            name="Sinopse"
-            rows="4"
-            required
-          >
-<%= livro.Sinopse %></textarea
-          >
-        </div>
+        <!-- Adicione outros campos de edição conforme necessário -->
+
         <button
           type="submit"
           class="btn btn-primary"
@@ -87,15 +55,6 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="successModalLabel">Sucesso!</h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Fechar"
-              onclick="window.location.href = '/'"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
           </div>
           <div class="modal-body">A alteração foi realizada com sucesso.</div>
           <div class="modal-footer">

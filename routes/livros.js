@@ -102,25 +102,38 @@ router.post("/update", (req, res) => {
         console.error(err);
         res.status(500).send("Erro ao atualizar o livro.");
       } else {
-        res.sendStatus(200);
+        console.log("Livro atualizado com sucesso!");
+        return;
       }
     }
   );
 });
 
-// Rota para excluir um livro
-router.get("/excluir/:id", (req, res) => {
+router.post("/excluir/:id", (req, res) => {
   const livroID = req.params.id;
-  const query = "DELETE FROM Livros WHERE LivroID = ?";
-  db.query(query, [livroID], (err, results) => {
-    if (err) {
-      console.error(err);
-      res.status(500).send("Erro ao excluir o livro.");
-    } else {
-      console.log("Livro excluído com sucesso!");
-      res.sendStatus(200);
-    }
+
+  // Array de instruções SQL
+  const queries = [
+    "DELETE FROM Avaliacoes WHERE LivroID = ?",
+    "DELETE FROM LivrosAutores WHERE LivroID = ?",
+    "DELETE FROM LivrosEditoras WHERE LivroID = ?",
+    "DELETE FROM LivrosGeneros WHERE LivroID = ?",
+    "DELETE FROM Livros WHERE LivroID = ?",
+  ];
+
+  // Loop para executar cada instrução SQL
+  queries.forEach((query, index) => {
+    db.query(query, [livroID], (err, results) => {
+      if (err) {
+        console.error(err);
+        res.status(500).send(`Erro ao excluir o livro (etapa ${index + 1}).`);
+        return;
+      }
+    });
   });
+
+  console.log("Livro excluído com sucesso!");
+  res.redirect("/"); // Redireciona para a página principal após excluir o livro
 });
 
 module.exports = router;

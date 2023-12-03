@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inserir Autor</title>
+    <%- include('../../partials/estilizacao.ejs') %>
+  </head>
+  <body>
+    <%- include('../../partials/navbar.ejs') %>
+    <div class="container mt-5 min-vh-100">
+      <h2>Inserir Autor</h2>
+      <form method="post" action="/autores/post">
+        <div class="form-group">
+          <label for="NomeAutor">Nome do Autor:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="NomeAutor"
+            name="NomeAutor"
+            required
+          />
+        </div>
+        <button type="submit" class="btn btn-primary">Inserir Autor</button>
+      </form>
+    </div>
+    <%- include('../../partials/footer.ejs') %>
+  </body>
+</html>

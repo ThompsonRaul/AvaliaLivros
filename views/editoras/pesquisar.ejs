@@ -1,0 +1,38 @@
+<!-- views/editoras/pesquisar.ejs -->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pesquisar Editoras</title>
+    <!-- Inclua os estilos do Bootstrap -->
+    <%- include('../../partials/estilizacao.ejs') %>
+  </head>
+  <body>
+    <!-- Inclua a barra de navegação, se necessário -->
+    <%- include('../../partials/navbar.ejs') %>
+    <div class="container mt-3 min-vh-100">
+      <h2>Pesquisar Editoras</h2>
+      <form
+        class="form-inline mt-3"
+        action="/editoras/resultados_pesquisa"
+        method="GET"
+      >
+        <div class="form-group">
+          <label for="nomeEditora" class="sr-only">Nome da Editora</label>
+          <input
+            type="text"
+            class="form-control"
+            id="nomeEditora"
+            name="nome"
+            placeholder="Digite o nome da editora"
+          />
+        </div>
+        <button type="submit" class="btn btn-primary ml-2">Pesquisar</button>
+      </form>
+    </div>
+    <!-- Inclua o rodapé, se necessário -->
+    <%- include('../../partials/footer.ejs') %>
+  </body>
+</html>

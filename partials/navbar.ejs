@@ -11,7 +11,6 @@
       <li class="nav-item dropdown">
         <a
           class="nav-link dropdown-toggle"
-          href="#"
           id="inserirDropdown"
           role="button"
           data-toggle="dropdown"
@@ -24,12 +23,11 @@
           class="dropdown-menu dropdown-menu-right"
           aria-labelledby="inserirDropdown"
         >
-          <a class="dropdown-item" href="/livros/inserir">Inserir Livros</a>
-          <a class="dropdown-item" href="/atores/inserir">Inserir Autor</a>
-          <a class="dropdown-item" href="/filmes_atores/inserir"
+          <a class="dropdown-item" href="/autores/inserir">Inserir Autor</a>
+          <a class="dropdown-item" href="/livros_autores/inserir"
             >Inserir Livro-Autor</a
           >
-          <a class="dropdown-item" href="/diretores/inserir">Inserir Editora</a>
+          <a class="dropdown-item" href="/editoras/inserir">Inserir Editora</a>
           <a class="dropdown-item" href="/filmes_diretores/inserir"
             >Inserir Livro-Editora</a
           >
@@ -43,7 +41,6 @@
       <li class="nav-item dropdown">
         <a
           class="nav-link dropdown-toggle"
-          href="#"
           id="inserirDropdown"
           role="button"
           data-toggle="dropdown"
@@ -56,8 +53,8 @@
           class="dropdown-menu dropdown-menu-right"
           aria-labelledby="inserirDropdown"
         >
-          <a class="dropdown-item" href="/atores/pesquisar">Pesquisar Autor</a>
-          <a class="dropdown-item" href="/diretores/pesquisar"
+          <a class="dropdown-item" href="/autores/pesquisar">Pesquisar Autor</a>
+          <a class="dropdown-item" href="/editoras/pesquisar"
             >Pesquisar Editora</a
           >
           <a class="dropdown-item" href="/generos/pesquisar"
@@ -69,7 +66,26 @@
       <li class="nav-item dropdown">
         <a
           class="nav-link dropdown-toggle"
-          href="#"
+          id="atualizarDropdown"
+          role="button"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          Editar
+        </a>
+        <div
+          class="dropdown-menu dropdown-menu-right"
+          aria-labelledby="atualizarDropdown"
+        >
+          <a class="dropdown-item" href="/editoras/editar">Editar Editora</a>
+          <a class="dropdown-item" href="/generos/editar">Editar Gênero</a>
+        </div>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a
+          class="nav-link dropdown-toggle"
           id="inserirDropdown"
           role="button"
           data-toggle="dropdown"
@@ -82,7 +98,6 @@
           class="dropdown-menu dropdown-menu-right"
           aria-labelledby="inserirDropdown"
         >
-          <a class="dropdown-item" href="/filmes/inserir">Deletar Livro</a>
           <a class="dropdown-item" href="/atores/inserir">Deletar Autor</a>
           <a class="dropdown-item" href="/diretores/inserir">Deletar Editora</a>
           <a class="dropdown-item" href="/generos/inserir">Deletar Gênero</a>

@@ -12,7 +12,10 @@
     <!-- Inclua seu cabeçalho de navegação aqui -->
     <%- include('../partials/navbar.ejs') %>
     <div class="container mt-5 min-vh-100">
-      <h2>Lista de Livros</h2>
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Lista de Livros</h2>
+        <a href="/livros/inserir" class="btn btn-info">Inserir Livro</a>
+      </div>
       <ul class="list-group">
         <% livros.forEach(function(livro) { %>
         <li class="list-group-item">
@@ -41,56 +44,61 @@
               Excluir Livro
             </button>
 
-            <!-- Modal de confirmação de exclusão -->
-            <div
-              class="modal fade"
-              id="deleteModal<%= livro.ID %>"
-              tabindex="-1"
-              role="dialog"
-              aria-labelledby="deleteModalLabel"
-              aria-hidden="true"
-            >
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="deleteModalLabel">
-                      Confirmação
-                    </h5>
-                    <button
-                      type="button"
-                      class="close"
-                      data-dismiss="modal"
-                      aria-label="Fechar"
-                    >
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    Tem certeza de que deseja excluir o livro "<%= livro.Livro
-                    %>"?
-                  </div>
-                  <div class="modal-footer">
-                    <button
-                      type="button"
-                      class="btn btn-secondary"
-                      data-dismiss="modal"
-                    >
-                      Cancelar
-                    </button>
-                    <a
-                      href="/livros/excluir/<%= livro.ID %>"
-                      class="btn btn-danger"
-                      data-toggle="modal"
-                      data-target="#successModal"
-                      data-dismiss="modal"
-                    >
-                      Excluir
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+           <!-- Modal de confirmação de exclusão -->
+<div
+class="modal fade"
+id="deleteModal<%= livro.ID %>"
+tabindex="-1"
+role="dialog"
+aria-labelledby="deleteModalLabel"
+aria-hidden="true"
+>
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="deleteModalLabel">
+        Confirmação
+      </h5>
+      <button
+        type="button"
+        class="close"
+        data-dismiss="modal"
+        aria-label="Fechar"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>
+        Tem certeza de que deseja excluir o livro "<%= livro.Livro %>"?
+      </p>
+      <!-- Formulário para confirmar a exclusão -->
+      <form
+        action="/livros/excluir/<%= livro.ID %>"
+        method="POST"
+        id="deleteForm<%= livro.ID %>"
+      >
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-dismiss="modal"
+        >
+          Cancelar
+        </button>
+        <button
+          type="submit"
+          class="btn btn-danger"
+          data-toggle="modal"
+          data-target="#successModal"
+          
+        >
+          Excluir
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
         </li>
         <% }); %>
       </ul>
@@ -105,44 +113,6 @@
           <% } %>
         </ul>
       </nav>
-    </div>
-
-    <!-- Modal de sucesso -->
-    <div
-      class="modal fade"
-      id="successModal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="successModalLabel"
-      aria-hidden="true"
-      data-bs-backdrop="static"
-      data-bs-keyboard="false"
-    >
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="successModalLabel">Sucesso</h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Fechar"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">Livro excluído com sucesso.</div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-dismiss="modal"
-            >
-              Fechar
-            </button>
-          </div>
-        </div>
-      </div>
     </div>
 
     <!-- Inclua seu rodapé aqui -->
