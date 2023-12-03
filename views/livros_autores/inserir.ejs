@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Inserir Conjunto Livro/Autor</title>
+    <title>Inserir Livro-Autor</title>
     <!-- Estilos do Bootstrap -->
     <%- include('../../partials/estilizacao.ejs') %>
   </head>
@@ -11,7 +11,7 @@
   <body>
     <%- include('../../partials/navbar.ejs') %>
     <div class="container mt-5 min-vh-100">
-      <h2 class="mb-4">Inserir Conjunto Livro/Autor</h2>
+      <h2 class="mb-4">Inserir Livro-Autor</h2>
       <form method="post" action="/livros_autores/post">
         <div class="form-group">
           <label for="LivroID">Selecione um Livro:</label>
@@ -26,14 +26,18 @@
         <div class="form-group">
           <label for="AutorID">Selecione um Autor:</label>
           <select class="form-control" id="AutorID" name="AutorID" required>
-            <option value="" disabled selected>-- Selecione um Autor --</option>
+            <option value="" disabled selected>
+              -- Selecione um Autor --
+            </option>
             <% autores.forEach(function(autor) { %>
-            <option value="<%= autor.AutorID %>"><%= autor.NomeAutor %></option>
+            <option value="<%= autor.AutorID %>">
+              <%= autor.NomeAutor %>
+            </option>
             <% }); %>
           </select>
         </div>
         <button type="submit" class="btn btn-primary">
-          Inserir Conjunto Livro/Autor
+          Inserir Livro-Autor
         </button>
       </form>
     </div>
