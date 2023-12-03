@@ -102,10 +102,25 @@ router.post("/update", (req, res) => {
         console.error(err);
         res.status(500).send("Erro ao atualizar o livro.");
       } else {
-        return;
+        res.sendStatus(200);
       }
     }
   );
+});
+
+// Rota para excluir um livro
+router.get("/excluir/:id", (req, res) => {
+  const livroID = req.params.id;
+  const query = "DELETE FROM Livros WHERE LivroID = ?";
+  db.query(query, [livroID], (err, results) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send("Erro ao excluir o livro.");
+    } else {
+      console.log("Livro excluído com sucesso!");
+      res.sendStatus(200);
+    }
+  });
 });
 
 module.exports = router;
