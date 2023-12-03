@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inserir Conjunto Livro/Gênero</title>
+    <!-- Estilos do Bootstrap -->
+    <%- include('../../partials/estilizacao.ejs') %>
+  </head>
+
+  <body>
+    <%- include('../../partials/navbar.ejs') %>
+    <div class="container mt-5 min-vh-100">
+      <h2 class="mb-4">Inserir Conjunto Livro/Gênero</h2>
+      <form method="post" action="/livros_generos/post">
+        <div class="form-group">
+          <label for="LivroID">Selecione um Livro:</label>
+          <select class="form-control" id="LivroID" name="LivroID" required>
+            <option value="" disabled selected>-- Selecione um Livro --</option>
+            <% livros.forEach(function(livro) { %>
+            <option value="<%= livro.LivroID %>"><%= livro.Titulo %></option>
+            <% }); %>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="GeneroID">Selecione um Gênero:</label>
+          <select class="form-control" id="GeneroID" name="GeneroID" required>
+            <option value="" disabled selected>
+              -- Selecione um Gênero --
+            </option>
+            <% generos.forEach(function(genero) { %>
+            <option value="<%= genero.GeneroID %>">
+              <%= genero.NomeGenero %>
+            </option>
+            <% }); %>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">
+          Inserir Conjunto Livro/Gênero
+        </button>
+      </form>
+    </div>
+    <%- include('../../partials/footer.ejs') %>
+  </body>
+</html>

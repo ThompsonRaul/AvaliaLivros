@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inserir Conjunto Livro/Editora</title>
+    <!-- Estilos do Bootstrap -->
+    <%- include('../../partials/estilizacao.ejs') %>
+  </head>
+
+  <body>
+    <%- include('../../partials/navbar.ejs') %>
+    <div class="container mt-5 min-vh-100">
+      <h2 class="mb-4">Inserir Conjunto Livro/Editora</h2>
+      <form method="post" action="/livros_editoras/post">
+        <div class="form-group">
+          <label for="LivroID">Selecione um Livro:</label>
+          <select class="form-control" id="LivroID" name="LivroID" required>
+            <option value="" disabled selected>-- Selecione um Livro --</option>
+            <% livros.forEach(function(livro) { %>
+            <option value="<%= livro.LivroID %>"><%= livro.Titulo %></option>
+            <% }); %>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="EditoraID">Selecione uma Editora:</label>
+          <select class="form-control" id="EditoraID" name="EditoraID" required>
+            <option value="" disabled selected>
+              -- Selecione uma Editora --
+            </option>
+            <% editoras.forEach(function(editora) { %>
+            <option value="<%= editora.EditoraID %>">
+              <%= editora.NomeEditora %>
+            </option>
+            <% }); %>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">
+          Inserir Conjunto Livro/Editora
+        </button>
+      </form>
+    </div>
+    <%- include('../../partials/footer.ejs') %>
+  </body>
+</html>
