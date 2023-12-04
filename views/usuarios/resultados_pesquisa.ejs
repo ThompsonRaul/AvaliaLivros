@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pesquisar Usuários</title>
+    <!-- Inclua os estilos do Bootstrap -->
+    <%- include('../../partials/estilizacao.ejs') %>
+  </head>
+  <body>
+    <!-- Inclua a barra de navegação, se necessário -->
+    <%- include('../../partials/navbar.ejs') %>
+    <div class="container mt-3 min-vh-100">
+      <h2>Pesquisar Usuários</h2>
+      <form
+        class="form-inline mt-3"
+        action="/usuarios/resultados_pesquisa"
+        method="GET"
+      >
+        <div class="form-group">
+          <label for="nome" class="sr-only">Nome do Usuário</label>
+          <input
+            type="text"
+            class="form-control"
+            id="nome"
+            name="nome"
+            placeholder="Digite o nome do usuário"
+          />
+        </div>
+        <button type="submit" class="btn btn-primary ml-2">Pesquisar</button>
+      </form>
+      <h3>Resultados da Pesquisa</h3>
+
+      <% if (usuarios.length > 0) { %>
+      <ul class="list-group">
+        <% usuarios.forEach(function(usuario) { %>
+        <li class="list-group-item">
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <strong><%= usuario.Nome %></strong><br />
+              E-mail: <%= usuario.Email %><br />
+              Filmes avaliados: <%= usuario.FilmesAvaliados %>
+            </div>
+            <div class="ml-auto">
+              <!-- Adicionando a classe "ml-auto" para mover para a direita -->
+              <!-- Botão para editar o usuário -->
+              <a
+                href="/usuarios/editar/<%= usuario.UsuarioID %>"
+                class="btn btn-primary mr-2"
+                >Editar Usuário</a
+              >
+              <!-- Botão para abrir o modal de confirmação -->
+              <button
+                class="btn btn-danger"
+                data-toggle="modal"
+                data-target="#deleteModal<%= usuario.UsuarioID %>"
+              >
+                Excluir Usuário
+              </button>
+            </div>
+          </div>
+        </li>
+
+        <!-- Modal de confirmação -->
+        <div
+          class="modal fade"
+          id="deleteModal<%= usuario.UsuarioID %>"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="deleteModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Confirmação</h5>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Fechar"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>
+                  Tem certeza de que deseja excluir o usuário "<%= usuario.Nome
+                  %>"?
+                </p>
+
+                <!-- Formulário de confirmação de exclusão -->
+                <form
+                  action="/usuarios/excluir/<%= usuario.UsuarioID %>"
+                  method="POST"
+                  id="deleteForm<%= usuario.UsuarioID %>"
+                >
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-dismiss="modal"
+                  >
+                    Cancelar
+                  </button>
+                  <!-- Botão para confirmar a exclusão -->
+                  <button type="submit" class="btn btn-danger">Excluir</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% }); %>
+      </ul>
+      <% } else { %>
+      <p>Não foram encontrados resultados para esta pesquisa.</p>
+      <% } %>
+    </div>
+    <!-- Inclua o rodapé, se necessário -->
+    <%- include('../../partials/footer.ejs') %>
+  </body>
+</html>

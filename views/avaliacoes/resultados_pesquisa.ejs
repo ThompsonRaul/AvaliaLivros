@@ -1,0 +1,115 @@
+<!-- resultados_pesquisa.ejs -->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resultados da Pesquisa</title>
+    <!-- Inclua os estilos do Bootstrap ou outros estilos necessários -->
+    <%- include('../../partials/estilizacao.ejs') %>
+  </head>
+
+  <body>
+    <!-- Inclua a barra de navegação, se necessário -->
+    <%- include('../../partials/navbar.ejs') %>
+
+    <div class="container mt-3 min-vh-100">
+      <h2>Avaliações de <%= livroTitulo %></h2>
+
+      <% if (avaliacoesPorLivro.length > 0) { %>
+      <ul class="list-group">
+        <% avaliacoesPorLivro.forEach(function(avaliacao) { %>
+        <li class="list-group-item">
+          <div>
+            <div>
+              <strong>Avaliação de <%= avaliacao.NomeUsuario %></strong>
+            </div>
+            <div>
+              <p>Nota: <%= avaliacao.Nota %></p>
+              <p>Comentário: <%= avaliacao.Comentario %></p>
+              <div class="d-flex justify-content-between">
+                <p>Data da Avaliação: <%= avaliacao.DataAvaliacao %></p>
+                <div class="ml-auto">
+                  <!-- Botão para editar a avaliação -->
+                  <a
+                    href="/avaliacoes/editar/<%= avaliacao.AvaliacaoID %>"
+                    class="btn btn-primary mr-2"
+                  >
+                    Editar Avaliação
+                  </a>
+                  <!-- Botão para excluir a avaliação -->
+                  <button
+                    class="btn btn-danger"
+                    data-toggle="modal"
+                    data-target="#deleteModal<%= avaliacao.AvaliacaoID %>"
+                  >
+                    Excluir Avaliação
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <!-- Modal de confirmação de exclusão -->
+        <div
+          class="modal fade"
+          id="deleteModal<%= avaliacao.AvaliacaoID %>"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="deleteModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Confirmação</h5>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Fechar"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>Tem certeza de que deseja excluir esta avaliação?</p>
+                <!-- Formulário de confirmação de exclusão -->
+                <form
+                  action="/avaliacoes/excluir/<%= avaliacao.AvaliacaoID %>"
+                  method="POST"
+                >
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-dismiss="modal"
+                  >
+                    Cancelar
+                  </button>
+                  <!-- Botão para confirmar a exclusão -->
+                  <button type="submit" class="btn btn-danger">Excluir</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <% }); %>
+      </ul>
+      <% } else { %>
+      <p>Não foram encontradas avaliações para este livro.</p>
+      <% } %>
+
+      <!-- Adicione outros elementos ou estilos conforme necessário -->
+    </div>
+
+    <!-- Inclua o rodapé, se necessário -->
+    <%- include('../../partials/footer.ejs') %>
+
+    <script>
+      // Se necessário, você pode adicionar scripts aqui
+    </script>
+  </body>
+</html>

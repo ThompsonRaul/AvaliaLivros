@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inserir Usuário</title>
+    <%- include('../../partials/estilizacao.ejs') %>
+  </head>
+  <body>
+    <%- include('../../partials/navbar.ejs') %>
+    <div class="container mt-5 min-vh-100">
+      <h2>Inserir Usuário</h2>
+      <form method="post" action="/usuarios/post">
+        <div class="form-group">
+          <label for="Nome">Nome do Usuário:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="Nome"
+            name="Nome"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="Email">E-mail:</label>
+          <input
+            type="email"
+            class="form-control"
+            id="Email"
+            name="Email"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="Senha">Senha:</label>
+          <div class="input-group">
+            <input
+              type="password"
+              class="form-control"
+              id="Senha"
+              name="Senha"
+              required
+            />
+            <div class="input-group-append">
+              <button
+                class="btn btn-outline-secondary"
+                type="button"
+                onclick="toggleSenha()"
+              >
+                Mostrar Senha
+              </button>
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Inserir Usuário</button>
+      </form>
+    </div>
+    <%- include('../../partials/footer.ejs') %>
+
+    <script>
+      function toggleSenha() {
+        const senhaInput = document.getElementById("Senha");
+        senhaInput.type = senhaInput.type === "password" ? "text" : "password";
+      }
+    </script>
+  </body>
+</html>
