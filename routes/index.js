@@ -4,7 +4,7 @@ const db = require("../db.js");
 
 router.get("/", (req, res) => {
   const livrosPorPagina = 3;
-  const paginaAtual = req.query.pagina || 1; // Página padrão é 1
+  const paginaAtual = req.query.pagina || 1;
 
   const query = `
     SELECT

@@ -4,12 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pesquisar Editoras</title>
-    <!-- Inclua os estilos do Bootstrap ou outros estilos necessários -->
     <%- include('../../partials/estilizacao.ejs') %>
   </head>
 
   <body>
-    <!-- Inclua a barra de navegação, se necessário -->
     <%- include('../../partials/navbar.ejs') %>
     <div class="container mt-3 min-vh-100">
       <h2>Pesquisar Editoras</h2>
@@ -42,14 +40,12 @@
               Livros Publicados: <%= editora.Livros %>
             </div>
             <div>
-              <!-- Botão para editar a editora -->
               <a
                 href="/editoras/editar/<%= editora.EditoraID %>"
                 class="btn btn-primary mr-2"
               >
                 Editar Editora
               </a>
-              <!-- Botão para excluir a editora -->
               <button
                 class="btn btn-danger"
                 data-toggle="modal"
@@ -61,7 +57,6 @@
           </div>
         </li>
 
-        <!-- Modal de confirmação -->
         <div
           class="modal fade"
           id="deleteModal<%= editora.EditoraID %>"
@@ -88,7 +83,6 @@
                   Tem certeza de que deseja excluir a editora "<%=
                   editora.NomeEditora %>"?
                 </p>
-                <!-- Formulário para confirmação de exclusão -->
                 <form
                   id="deleteForm<%= editora.EditoraID %>"
                   action="/editoras/excluir/<%= editora.EditoraID %>"
@@ -101,7 +95,6 @@
                   >
                     Cancelar
                   </button>
-                  <!-- Botão para confirmar a exclusão -->
                   <button type="submit" class="btn btn-danger">Excluir</button>
                 </form>
               </div>
@@ -114,7 +107,6 @@
       <p>Não foram encontrados resultados para esta pesquisa.</p>
       <% } %>
     </div>
-    <!-- Inclua o rodapé, se necessário -->
     <%- include('../../partials/footer.ejs') %>
   </body>
 </html>

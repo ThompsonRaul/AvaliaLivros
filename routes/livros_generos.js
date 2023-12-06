@@ -17,7 +17,6 @@ router.get("/inserir", (req, res) => {
     db.query(sqlGeneros, (errorGeneros, resultsGeneros) => {
       if (errorGeneros) throw errorGeneros;
 
-      // Renderizar a página com os resultados
       res.render("livros_generos/inserir", {
         livros: resultsLivros,
         generos: resultsGeneros,
@@ -26,7 +25,6 @@ router.get("/inserir", (req, res) => {
   });
 });
 
-// Rota para processar o formulário e inserir no banco de dados
 router.post("/post", (req, res) => {
   const { LivroID, GeneroID } = req.body;
   const sql = `

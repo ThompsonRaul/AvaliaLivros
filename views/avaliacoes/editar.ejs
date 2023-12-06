@@ -4,11 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Editar Avaliação</title>
-    <!-- Inclua os estilos do Bootstrap ou outros estilos necessários -->
     <%- include('../../partials/estilizacao.ejs') %>
   </head>
   <body>
-    <!-- Inclua a barra de navegação, se necessário -->
     <%- include('../../partials/navbar.ejs') %>
     <div class="container mt-5 min-vh-100">
       <h2>Editar Avaliação</h2>
@@ -45,7 +43,6 @@
 <%= avaliacao.Comentario %></textarea
           >
         </div>
-        <!-- Adicione outros campos de edição conforme necessário -->
 
         <button
           type="submit"
@@ -58,7 +55,6 @@
       </form>
     </div>
 
-    <!-- Modal de Sucesso -->
     <div
       class="modal fade"
       id="successModal"

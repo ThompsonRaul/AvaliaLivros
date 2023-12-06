@@ -82,7 +82,6 @@ router.post("/update", (req, res) => {
       console.error(err);
       res.status(500).send("Erro ao atualizar o usuário.");
     } else {
-      // Lógica de redirecionamento ou resposta de sucesso
       res.redirect("/usuarios/resultados_pesquisa?nome=");
     }
   });

@@ -1,17 +1,13 @@
-<!-- resultados_pesquisa.ejs -->
-
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Resultados da Pesquisa</title>
-    <!-- Inclua os estilos do Bootstrap ou outros estilos necessários -->
     <%- include('../../partials/estilizacao.ejs') %>
   </head>
 
   <body>
-    <!-- Inclua a barra de navegação, se necessário -->
     <%- include('../../partials/navbar.ejs') %>
 
     <div class="container mt-3 min-vh-100">
@@ -31,14 +27,12 @@
               <div class="d-flex justify-content-between">
                 <p>Data da Avaliação: <%= avaliacao.DataAvaliacao %></p>
                 <div class="ml-auto">
-                  <!-- Botão para editar a avaliação -->
                   <a
                     href="/avaliacoes/editar/<%= avaliacao.AvaliacaoID %>"
                     class="btn btn-primary mr-2"
                   >
                     Editar Avaliação
                   </a>
-                  <!-- Botão para excluir a avaliação -->
                   <button
                     class="btn btn-danger"
                     data-toggle="modal"
@@ -52,7 +46,6 @@
           </div>
         </li>
 
-        <!-- Modal de confirmação de exclusão -->
         <div
           class="modal fade"
           id="deleteModal<%= avaliacao.AvaliacaoID %>"
@@ -76,7 +69,6 @@
               </div>
               <div class="modal-body">
                 <p>Tem certeza de que deseja excluir esta avaliação?</p>
-                <!-- Formulário de confirmação de exclusão -->
                 <form
                   action="/avaliacoes/excluir/<%= avaliacao.AvaliacaoID %>"
                   method="POST"
@@ -88,7 +80,6 @@
                   >
                     Cancelar
                   </button>
-                  <!-- Botão para confirmar a exclusão -->
                   <button type="submit" class="btn btn-danger">Excluir</button>
                 </form>
               </div>
@@ -101,15 +92,9 @@
       <% } else { %>
       <p>Não foram encontradas avaliações para este livro.</p>
       <% } %>
-
-      <!-- Adicione outros elementos ou estilos conforme necessário -->
     </div>
-
-    <!-- Inclua o rodapé, se necessário -->
     <%- include('../../partials/footer.ejs') %>
 
-    <script>
-      // Se necessário, você pode adicionar scripts aqui
-    </script>
+    <script></script>
   </body>
 </html>

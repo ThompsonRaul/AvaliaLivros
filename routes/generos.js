@@ -39,7 +39,6 @@ router.get("/pesquisar", (req, res) => {
 router.get("/resultados_pesquisa", (req, res) => {
   const { generoId } = req.query;
 
-  // Consulta para obter o nome do gênero
   db.query(
     "SELECT NomeGenero FROM Generos WHERE GeneroID = ?",
     [generoId],
@@ -50,7 +49,6 @@ router.get("/resultados_pesquisa", (req, res) => {
       } else {
         const generoNome = results[0].NomeGenero;
 
-        // Consulta para obter livros por gênero
         db.query(
           `SELECT 
           G.GeneroID,
@@ -115,13 +113,11 @@ router.post("/update", (req, res) => {
 router.post("/excluir/:id", (req, res) => {
   const GeneroID = req.params.id;
 
-  // Array de instruções SQL
   const queries = [
     "DELETE FROM LivrosGeneros WHERE GeneroID = ?",
     "DELETE FROM Generos WHERE GeneroID = ?",
   ];
 
-  // Loop para executar cada instrução SQL
   queries.forEach((query, index) => {
     db.query(query, [GeneroID], (err) => {
       if (err) {

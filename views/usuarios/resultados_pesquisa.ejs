@@ -4,11 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pesquisar Usuários</title>
-    <!-- Inclua os estilos do Bootstrap -->
     <%- include('../../partials/estilizacao.ejs') %>
   </head>
   <body>
-    <!-- Inclua a barra de navegação, se necessário -->
     <%- include('../../partials/navbar.ejs') %>
     <div class="container mt-3 min-vh-100">
       <h2>Pesquisar Usuários</h2>
@@ -42,14 +40,11 @@
               Filmes avaliados: <%= usuario.FilmesAvaliados %>
             </div>
             <div class="ml-auto">
-              <!-- Adicionando a classe "ml-auto" para mover para a direita -->
-              <!-- Botão para editar o usuário -->
               <a
                 href="/usuarios/editar/<%= usuario.UsuarioID %>"
                 class="btn btn-primary mr-2"
                 >Editar Usuário</a
               >
-              <!-- Botão para abrir o modal de confirmação -->
               <button
                 class="btn btn-danger"
                 data-toggle="modal"
@@ -61,7 +56,6 @@
           </div>
         </li>
 
-        <!-- Modal de confirmação -->
         <div
           class="modal fade"
           id="deleteModal<%= usuario.UsuarioID %>"
@@ -89,7 +83,6 @@
                   %>"?
                 </p>
 
-                <!-- Formulário de confirmação de exclusão -->
                 <form
                   action="/usuarios/excluir/<%= usuario.UsuarioID %>"
                   method="POST"
@@ -102,7 +95,6 @@
                   >
                     Cancelar
                   </button>
-                  <!-- Botão para confirmar a exclusão -->
                   <button type="submit" class="btn btn-danger">Excluir</button>
                 </form>
               </div>
@@ -115,7 +107,6 @@
       <p>Não foram encontrados resultados para esta pesquisa.</p>
       <% } %>
     </div>
-    <!-- Inclua o rodapé, se necessário -->
     <%- include('../../partials/footer.ejs') %>
   </body>
 </html>

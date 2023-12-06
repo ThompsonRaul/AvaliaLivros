@@ -57,12 +57,10 @@ GROUP BY
   });
 });
 
-// Rota para renderizar o formulário de edição de editora
 router.get("/editar/:id", (req, res) => {
   const editoraID = req.params.id;
   const query = "SELECT * FROM Editoras WHERE EditoraID = ?";
 
-  // Execute a consulta para obter os detalhes da editora
   db.query(query, [editoraID], (err, results) => {
     if (err) {
       console.error(err);
@@ -76,7 +74,6 @@ router.get("/editar/:id", (req, res) => {
   });
 });
 
-// Rota para processar a atualização de editora
 router.post("/update", (req, res) => {
   const { EditoraID, NomeEditora } = req.body;
   const query = "UPDATE Editoras SET NomeEditora = ? WHERE EditoraID = ?";
@@ -86,7 +83,6 @@ router.post("/update", (req, res) => {
       console.error(err);
       res.status(500).send("Erro ao atualizar a editora.");
     } else {
-      // Lógica de redirecionamento ou resposta de sucesso
       res.redirect("/editoras/resultados_pesquisa?nome=");
     }
   });
@@ -95,13 +91,11 @@ router.post("/update", (req, res) => {
 router.post("/excluir/:id", (req, res) => {
   const editoraID = req.params.id;
 
-  // Array de instruções SQL
   const queries = [
     "DELETE FROM LivrosEditoras WHERE EditoraID = ?",
     "DELETE FROM Editoras WHERE EditoraID = ?",
   ];
 
-  // Loop para executar cada instrução SQL
   queries.forEach((query, index) => {
     db.query(query, [editoraID], (err, results) => {
       if (err) {
@@ -113,7 +107,7 @@ router.post("/excluir/:id", (req, res) => {
   });
 
   console.log("Editora excluída com sucesso!");
-  res.redirect("/editoras/resultados_pesquisa?nome="); // Redireciona para a página principal após excluir o livro
+  res.redirect("/editoras/resultados_pesquisa?nome=");
 });
 
 module.exports = router;

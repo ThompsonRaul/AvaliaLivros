@@ -17,7 +17,6 @@ router.get("/inserir", (req, res) => {
     db.query(sqlUsuarios, (errorUsuarios, resultsUsuarios) => {
       if (errorUsuarios) throw errorUsuarios;
 
-      // Renderizar a página com os resultados
       res.render("avaliacoes/inserir", {
         livros: resultsLivros,
         usuarios: resultsUsuarios,
@@ -60,7 +59,6 @@ router.get("/pesquisar", (req, res) => {
 router.get("/resultados_pesquisa", (req, res) => {
   const { livroId } = req.query;
 
-  // Consulta para obter o título do livro
   db.query(
     "SELECT Titulo FROM Livros WHERE LivroID = ?",
     [livroId],
@@ -71,7 +69,6 @@ router.get("/resultados_pesquisa", (req, res) => {
       } else {
         const livroTitulo = results[0].Titulo;
 
-        // Consulta para obter avaliações por livro
         db.query(
           `SELECT 
           A.AvaliacaoID,
@@ -106,7 +103,6 @@ router.get("/editar/:id", (req, res) => {
   const avaliacaoID = req.params.id;
   const query = "SELECT * FROM Avaliacoes WHERE AvaliacaoID = ?";
 
-  // Execute a consulta para obter os detalhes da avaliação
   db.query(query, [avaliacaoID], (err, results) => {
     if (err) {
       console.error(err);
@@ -131,7 +127,6 @@ router.post("/update", (req, res) => {
       res.status(500).send("Erro ao atualizar a avaliação.");
     } else {
       console.log("Avaliação atualizada com sucesso!");
-      // Redireciona para a página de resultados de pesquisa ou outra página desejada
       res.redirect("/avaliacoes/pesquisar");
     }
   });
@@ -141,7 +136,6 @@ router.post("/excluir/:id", (req, res) => {
   const avaliacaoID = req.params.id;
   const query = "DELETE FROM Avaliacoes WHERE AvaliacaoID = ?";
 
-  // Executar a consulta para excluir a avaliação
   db.query(query, [avaliacaoID], (err) => {
     if (err) {
       console.error(err);
