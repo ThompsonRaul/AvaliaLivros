@@ -71,7 +71,6 @@ router.get("/editar/:id", (req, res) => {
   });
 });
 
-// Rota para processar a atualização
 router.post("/update", (req, res) => {
   const { AutorID, NomeAutor } = req.body;
   const query = "UPDATE Autores SET NomeAutor = ? WHERE AutorID = ?";
@@ -80,7 +79,6 @@ router.post("/update", (req, res) => {
       console.error(err);
       res.status(500).send("Erro ao atualizar o autor.");
     } else {
-      // Lógica de redirecionamento ou resposta de sucesso
       res.redirect("/autores/resultados_pesquisa?nome=");
     }
   });
@@ -89,13 +87,11 @@ router.post("/update", (req, res) => {
 router.post("/excluir/:id", (req, res) => {
   const autorID = req.params.id;
 
-  // Array de instruções SQL
   const queries = [
     "DELETE FROM LivrosAutores WHERE AutorID = ?",
     "DELETE FROM Autores WHERE AutorID = ?",
   ];
 
-  // Loop para executar cada instrução SQL
   queries.forEach((query, index) => {
     db.query(query, [autorID], (err, results) => {
       if (err) {
@@ -107,7 +103,7 @@ router.post("/excluir/:id", (req, res) => {
   });
 
   console.log("Autor excluído com sucesso!");
-  res.redirect("/autores/resultados_pesquisa?nome="); // Redireciona para a página principal após excluir o livro
+  res.redirect("/autores/resultados_pesquisa?nome=");
 });
 
 module.exports = router;

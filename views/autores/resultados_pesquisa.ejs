@@ -4,11 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pesquisar Autores</title>
-    <!-- Inclua os estilos do Bootstrap -->
     <%- include('../../partials/estilizacao.ejs') %>
   </head>
   <body>
-    <!-- Inclua a barra de navegação, se necessário -->
     <%- include('../../partials/navbar.ejs') %>
     <div class="container mt-3 min-vh-100">
       <h2>Pesquisar Autores</h2>
@@ -41,13 +39,11 @@
               Livros Escritos: <%= autor.Livros %>
             </div>
             <div>
-              <!-- Botão para editar o autor -->
               <a
                 href="/autores/editar/<%= autor.AutorID %>"
                 class="btn btn-primary mr-2"
                 >Editar Autor</a
               >
-              <!-- Botão para abrir o modal de confirmação -->
               <button
                 class="btn btn-danger"
                 data-toggle="modal"
@@ -59,7 +55,6 @@
           </div>
         </li>
 
-        <!-- Modal de confirmação -->
         <div
           class="modal fade"
           id="deleteModal<%= autor.AutorID %>"
@@ -87,7 +82,6 @@
                   %>"?
                 </p>
 
-                <!-- Formulário de confirmação de exclusão -->
                 <form
                   action="/autores/excluir/<%= autor.AutorID %>"
                   method="POST"
@@ -100,7 +94,6 @@
                   >
                     Cancelar
                   </button>
-                  <!-- Botão para confirmar a exclusão -->
                   <button type="submit" class="btn btn-danger">Excluir</button>
                 </form>
               </div>
@@ -113,7 +106,6 @@
       <p>Não foram encontrados resultados para esta pesquisa.</p>
       <% } %>
     </div>
-    <!-- Inclua o rodapé, se necessário -->
     <%- include('../../partials/footer.ejs') %>
   </body>
 </html>

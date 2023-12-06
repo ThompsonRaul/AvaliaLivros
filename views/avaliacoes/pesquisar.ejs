@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pesquisar Livros por Gênero</title>
+    <title>Pesquisar Avaliações</title>
     <%- include('../../partials/estilizacao.ejs') %>
   </head>
 
@@ -11,19 +11,17 @@
     <%- include('../../partials/navbar.ejs') %>
 
     <div class="container mt-3 min-vh-100">
-      <h2>Pesquisar Livros por Gênero</h2>
+      <h2>Pesquisar Avaliações</h2>
       <form
         class="form-inline mt-3"
-        action="/generos/resultados_pesquisa"
+        action="/avaliacoes/resultados_pesquisa"
         method="GET"
       >
         <div class="form-group">
-          <label for="generoId">Selecione o Gênero:</label>
-          <select class="form-control" id="generoId" name="generoId">
-            <% generos.forEach(function(genero) { %>
-            <option value="<%= genero.GeneroID %>">
-              <%= genero.NomeGenero %>
-            </option>
+          <label for="livroId">Selecione o Livro:</label>
+          <select class="form-control" id="livroId" name="livroId">
+            <% livros.forEach(function(livro) { %>
+            <option value="<%= livro.LivroID %>"><%= livro.Titulo %></option>
             <% }); %>
           </select>
         </div>

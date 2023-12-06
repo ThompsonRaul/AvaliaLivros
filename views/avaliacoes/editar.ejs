@@ -3,30 +3,45 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Editar Autor</title>
+    <title>Editar Avaliação</title>
     <%- include('../../partials/estilizacao.ejs') %>
   </head>
   <body>
     <%- include('../../partials/navbar.ejs') %>
     <div class="container mt-5 min-vh-100">
-      <h2>Editar Autor</h2>
-      <form id="updateForm" method="post" action="/autores/update">
+      <h2>Editar Avaliação</h2>
+      <form id="updateForm" method="post" action="/avaliacoes/update">
         <input
           type="hidden"
-          id="AutorID"
-          name="AutorID"
-          value="<%= autor.AutorID %>"
+          id="AvaliacaoID"
+          name="AvaliacaoID"
+          value="<%= avaliacao.AvaliacaoID %>"
         />
         <div class="form-group">
-          <label for="NomeAutor">Nome do Autor:</label>
+          <label for="Nota">Nota:</label>
           <input
-            type="text"
+            type="number"
             class="form-control"
-            id="NomeAutor"
-            name="NomeAutor"
-            value="<%= autor.NomeAutor %>"
+            id="Nota"
+            name="Nota"
+            value="<%= avaliacao.Nota %>"
             required
+            min="0"
+            max="5"
+            step="0.1"
           />
+        </div>
+        <div class="form-group">
+          <label for="Comentario">Comentário:</label>
+          <textarea
+            class="form-control"
+            id="Comentario"
+            name="Comentario"
+            rows="4"
+            required
+          >
+<%= avaliacao.Comentario %></textarea
+          >
         </div>
 
         <button
@@ -60,7 +75,6 @@
               type="button"
               class="btn btn-success"
               data-bs-dismiss="modal"
-              onclick="window.location.href = '/'"
             >
               Fechar
             </button>

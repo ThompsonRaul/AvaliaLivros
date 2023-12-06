@@ -3,55 +3,54 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pesquisar Editoras</title>
+    <title>Pesquisar Usuários</title>
     <%- include('../../partials/estilizacao.ejs') %>
   </head>
-
   <body>
     <%- include('../../partials/navbar.ejs') %>
     <div class="container mt-3 min-vh-100">
-      <h2>Pesquisar Editoras</h2>
+      <h2>Pesquisar Usuários</h2>
       <form
         class="form-inline mt-3"
-        action="/editoras/resultados_pesquisa"
+        action="/usuarios/resultados_pesquisa"
         method="GET"
       >
         <div class="form-group">
-          <label for="nomeEditora" class="sr-only">Nome da Editora</label>
+          <label for="nome" class="sr-only">Nome do Usuário</label>
           <input
             type="text"
             class="form-control"
-            id="nomeEditora"
+            id="nome"
             name="nome"
-            placeholder="Digite o nome da editora"
+            placeholder="Digite o nome do usuário"
           />
         </div>
         <button type="submit" class="btn btn-primary ml-2">Pesquisar</button>
       </form>
       <h3>Resultados da Pesquisa</h3>
 
-      <% if(editoras.length > 0) {%>
+      <% if (usuarios.length > 0) { %>
       <ul class="list-group">
-        <% editoras.forEach(function(editora) { %>
+        <% usuarios.forEach(function(usuario) { %>
         <li class="list-group-item">
           <div class="d-flex justify-content-between align-items-center">
             <div>
-              <strong> <%= editora.NomeEditora %> </strong><br />
-              Livros Publicados: <%= editora.Livros %>
+              <strong><%= usuario.Nome %></strong><br />
+              E-mail: <%= usuario.Email %><br />
+              Filmes avaliados: <%= usuario.FilmesAvaliados %>
             </div>
-            <div>
+            <div class="ml-auto">
               <a
-                href="/editoras/editar/<%= editora.EditoraID %>"
+                href="/usuarios/editar/<%= usuario.UsuarioID %>"
                 class="btn btn-primary mr-2"
+                >Editar Usuário</a
               >
-                Editar Editora
-              </a>
               <button
                 class="btn btn-danger"
                 data-toggle="modal"
-                data-target="#deleteModal<%= editora.EditoraID %>"
+                data-target="#deleteModal<%= usuario.UsuarioID %>"
               >
-                Excluir Editora
+                Excluir Usuário
               </button>
             </div>
           </div>
@@ -59,7 +58,7 @@
 
         <div
           class="modal fade"
-          id="deleteModal<%= editora.EditoraID %>"
+          id="deleteModal<%= usuario.UsuarioID %>"
           tabindex="-1"
           role="dialog"
           aria-labelledby="deleteModalLabel"
@@ -80,13 +79,14 @@
               </div>
               <div class="modal-body">
                 <p>
-                  Tem certeza de que deseja excluir a editora "<%=
-                  editora.NomeEditora %>"?
+                  Tem certeza de que deseja excluir o usuário "<%= usuario.Nome
+                  %>"?
                 </p>
+
                 <form
-                  id="deleteForm<%= editora.EditoraID %>"
-                  action="/editoras/excluir/<%= editora.EditoraID %>"
+                  action="/usuarios/excluir/<%= usuario.UsuarioID %>"
                   method="POST"
+                  id="deleteForm<%= usuario.UsuarioID %>"
                 >
                   <button
                     type="button"

@@ -3,28 +3,40 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Editar Autor</title>
+    <title>Editar Usuário</title>
     <%- include('../../partials/estilizacao.ejs') %>
   </head>
   <body>
     <%- include('../../partials/navbar.ejs') %>
+
     <div class="container mt-5 min-vh-100">
-      <h2>Editar Autor</h2>
-      <form id="updateForm" method="post" action="/autores/update">
+      <h2>Editar Usuário</h2>
+      <form id="updateForm" method="post" action="/usuarios/update">
         <input
           type="hidden"
-          id="AutorID"
-          name="AutorID"
-          value="<%= autor.AutorID %>"
+          id="UsuarioID"
+          name="UsuarioID"
+          value="<%= usuario.UsuarioID %>"
         />
         <div class="form-group">
-          <label for="NomeAutor">Nome do Autor:</label>
+          <label for="Nome">Nome do Usuário:</label>
           <input
             type="text"
             class="form-control"
-            id="NomeAutor"
-            name="NomeAutor"
-            value="<%= autor.NomeAutor %>"
+            id="Nome"
+            name="Nome"
+            value="<%= usuario.Nome %>"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="Email">E-mail:</label>
+          <input
+            type="email"
+            class="form-control"
+            id="Email"
+            name="Email"
+            value="<%= usuario.Email %>"
             required
           />
         </div>
@@ -68,5 +80,7 @@
         </div>
       </div>
     </div>
+
+    <%- include('../../partials/footer.ejs') %>
   </body>
 </html>

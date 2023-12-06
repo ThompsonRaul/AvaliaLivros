@@ -39,7 +39,6 @@ router.get("/pesquisar", (req, res) => {
 router.get("/resultados_pesquisa", (req, res) => {
   const { generoId } = req.query;
 
-  // Consulta para obter o nome do gênero
   db.query(
     "SELECT NomeGenero FROM Generos WHERE GeneroID = ?",
     [generoId],
@@ -50,7 +49,6 @@ router.get("/resultados_pesquisa", (req, res) => {
       } else {
         const generoNome = results[0].NomeGenero;
 
-        // Consulta para obter livros por gênero usando GROUP_CONCAT DISTINCT
         db.query(
           `SELECT 
           G.GeneroID,
@@ -80,12 +78,10 @@ router.get("/resultados_pesquisa", (req, res) => {
   );
 });
 
-// Rota para renderizar o formulário de edição de gênero
 router.get("/editar/:id", (req, res) => {
   const generoID = req.params.id;
   const query = "SELECT * FROM Generos WHERE GeneroID = ?";
 
-  // Execute a consulta para obter os detalhes do gênero
   db.query(query, [generoID], (err, results) => {
     if (err) {
       console.error(err);
@@ -99,7 +95,6 @@ router.get("/editar/:id", (req, res) => {
   });
 });
 
-// Rota para processar a atualização de gênero
 router.post("/update", (req, res) => {
   const { GeneroID, NomeGenero } = req.body;
   const query = "UPDATE Generos SET NomeGenero = ? WHERE GeneroID = ?";
@@ -115,17 +110,14 @@ router.post("/update", (req, res) => {
   });
 });
 
-// Rota para processar a exclusão de gênero
 router.post("/excluir/:id", (req, res) => {
   const GeneroID = req.params.id;
 
-  // Array de instruções SQL
   const queries = [
     "DELETE FROM LivrosGeneros WHERE GeneroID = ?",
     "DELETE FROM Generos WHERE GeneroID = ?",
   ];
 
-  // Loop para executar cada instrução SQL
   queries.forEach((query, index) => {
     db.query(query, [GeneroID], (err) => {
       if (err) {

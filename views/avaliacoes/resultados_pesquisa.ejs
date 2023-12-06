@@ -3,63 +3,52 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pesquisar Editoras</title>
+    <title>Resultados da Pesquisa</title>
     <%- include('../../partials/estilizacao.ejs') %>
   </head>
 
   <body>
     <%- include('../../partials/navbar.ejs') %>
-    <div class="container mt-3 min-vh-100">
-      <h2>Pesquisar Editoras</h2>
-      <form
-        class="form-inline mt-3"
-        action="/editoras/resultados_pesquisa"
-        method="GET"
-      >
-        <div class="form-group">
-          <label for="nomeEditora" class="sr-only">Nome da Editora</label>
-          <input
-            type="text"
-            class="form-control"
-            id="nomeEditora"
-            name="nome"
-            placeholder="Digite o nome da editora"
-          />
-        </div>
-        <button type="submit" class="btn btn-primary ml-2">Pesquisar</button>
-      </form>
-      <h3>Resultados da Pesquisa</h3>
 
-      <% if(editoras.length > 0) {%>
+    <div class="container mt-3 min-vh-100">
+      <h2>Avaliações de <%= livroTitulo %></h2>
+
+      <% if (avaliacoesPorLivro.length > 0) { %>
       <ul class="list-group">
-        <% editoras.forEach(function(editora) { %>
+        <% avaliacoesPorLivro.forEach(function(avaliacao) { %>
         <li class="list-group-item">
-          <div class="d-flex justify-content-between align-items-center">
+          <div>
             <div>
-              <strong> <%= editora.NomeEditora %> </strong><br />
-              Livros Publicados: <%= editora.Livros %>
+              <strong>Avaliação de <%= avaliacao.NomeUsuario %></strong>
             </div>
             <div>
-              <a
-                href="/editoras/editar/<%= editora.EditoraID %>"
-                class="btn btn-primary mr-2"
-              >
-                Editar Editora
-              </a>
-              <button
-                class="btn btn-danger"
-                data-toggle="modal"
-                data-target="#deleteModal<%= editora.EditoraID %>"
-              >
-                Excluir Editora
-              </button>
+              <p>Nota: <%= avaliacao.Nota %></p>
+              <p>Comentário: <%= avaliacao.Comentario %></p>
+              <div class="d-flex justify-content-between">
+                <p>Data da Avaliação: <%= avaliacao.DataAvaliacao %></p>
+                <div class="ml-auto">
+                  <a
+                    href="/avaliacoes/editar/<%= avaliacao.AvaliacaoID %>"
+                    class="btn btn-primary mr-2"
+                  >
+                    Editar Avaliação
+                  </a>
+                  <button
+                    class="btn btn-danger"
+                    data-toggle="modal"
+                    data-target="#deleteModal<%= avaliacao.AvaliacaoID %>"
+                  >
+                    Excluir Avaliação
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </li>
 
         <div
           class="modal fade"
-          id="deleteModal<%= editora.EditoraID %>"
+          id="deleteModal<%= avaliacao.AvaliacaoID %>"
           tabindex="-1"
           role="dialog"
           aria-labelledby="deleteModalLabel"
@@ -79,13 +68,9 @@
                 </button>
               </div>
               <div class="modal-body">
-                <p>
-                  Tem certeza de que deseja excluir a editora "<%=
-                  editora.NomeEditora %>"?
-                </p>
+                <p>Tem certeza de que deseja excluir esta avaliação?</p>
                 <form
-                  id="deleteForm<%= editora.EditoraID %>"
-                  action="/editoras/excluir/<%= editora.EditoraID %>"
+                  action="/avaliacoes/excluir/<%= avaliacao.AvaliacaoID %>"
                   method="POST"
                 >
                   <button
@@ -101,12 +86,15 @@
             </div>
           </div>
         </div>
+
         <% }); %>
       </ul>
       <% } else { %>
-      <p>Não foram encontrados resultados para esta pesquisa.</p>
+      <p>Não foram encontradas avaliações para este livro.</p>
       <% } %>
     </div>
     <%- include('../../partials/footer.ejs') %>
+
+    <script></script>
   </body>
 </html>
