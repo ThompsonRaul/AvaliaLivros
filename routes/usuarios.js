@@ -42,12 +42,12 @@ router.get("/resultados_pesquisa", (req, res) => {
 FROM Usuarios U
 LEFT JOIN Avaliacoes A ON U.UsuarioID = A.UsuarioID
 LEFT JOIN Livros L ON A.LivroID = L.LivroID
-WHERE U.Nome LIKE "%%"
+WHERE U.Nome LIKE ?
 GROUP BY U.UsuarioID;
 
   `;
 
-  db.query(query, [searchTerm, searchTerm], (error, usuarios) => {
+  db.query(query, [searchTerm], (error, usuarios) => {
     if (error) {
       console.error("Erro:", error);
       res.status(500).send("Erro interno do servidor");
